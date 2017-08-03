@@ -1,0 +1,52 @@
+<div class="row justify-content-md-center">
+	<div class="col-md-3" *ngFor="let panel of panels; let i=index;">
+		<div class="panel panel-{{panel.panelClass}}">
+			<div class="panel-heading">
+				<h3 align="center">{{panel.title}}</h3>
+			</div>
+			<div class="panel-body">
+				<div *ngFor="let task of tasks | sortby : 'date' | sortby : 'priority'; let iTask = index;">
+					<div *ngIf="task.step === i" class="task-style border-color-{{task.priority}}">
+						<p align="center">
+							<button type="button" class="btn btn-lg priority-{{task.priority}}" placement="right"
+							        ngbPopover="{{task.content}}" popoverTitle="{{task.header}}" triggers="mouseenter:mouseleave">
+								{{task.header}}
+							</button>
+						</p>
+						<div>
+							{{dateShow(task.date)}}
+						</div>
+						<div class="buttons-panel" *ngIf="i<2">
+							<button type="button" class="btn btn-default" (click)="nextStep(iTask)" *ngIf=" !task.showEditTask">Next Step</button>
+							<button type="button" class="btn btn-danger" (click)="abortTask(iTask)" *ngIf=" !task.showEditTask">Abort</button>
+							<button type="button" class="btn btn-info" (click)="editTask(iTask)">Edit</button>
+						</div>
+						<div class="buttons-panel" *ngIf="i>1">
+							<button type="button" class="btn btn-danger" (click)="deleteTask(iTask)">Delete</button>
+						</div>
+						<div *ngIf="task.showEditTask">
+							<div class="form-group" *ngIf="i===0">
+								<label>Edit
+									<textarea class="form-control" rows="3" placeholder="Enter Text"
+									          [(ngModel)]="task.content" name="content" #content="ngModel" required></textarea>
+								</label>
+								<div [hidden]="content.valid || content.untouched" class="alert alert-danger">
+									Не указано описание
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Priority
+									<select class="custom-select" [(ngModel)]="task.priority">
+										<option value="0">Hi</option>
+										<option value="1">Middle</option>
+										<option value="2">Low</option>
+									</select>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

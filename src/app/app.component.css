@@ -1,0 +1,8 @@
+.header {
+    text-align:center;
+}
+.header h3,
+.header button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

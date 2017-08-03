@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="header">
+	<h1>
+		Welcome to Kanban Desk!
+	</h1>
+	<button type="button" class="btn btn-primary" aria-label="Add New" (click)="showDialog=true">Add Task</button>
+</div>
+
+<div class="main-body">
+	<div class="container">
+		<app-dialog-window *ngIf="showDialog" (dialogStatus)="dialogStatus($event)"></app-dialog-window>
+		<app-colume></app-colume>
+	</div>
+</div>

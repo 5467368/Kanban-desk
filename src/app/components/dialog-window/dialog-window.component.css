@@ -1,0 +1,11 @@
+.dialog-window-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+.dialog-window label {
+    width: 100%;
+}
+.dialog-window {
+    margin: 20px;
+    transition: 1s;
+}
